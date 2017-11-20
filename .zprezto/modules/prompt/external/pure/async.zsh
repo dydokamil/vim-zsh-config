@@ -3,20 +3,20 @@
 #
 # zsh-async
 #
-# version: 1.5.2
+# version: 1.5.0
 # author: Mathias Fredriksson
 # url: https://github.com/mafredri/zsh-async
 #
 
 # Produce debug output from zsh-async when set to 1.
-typeset -g ASYNC_DEBUG=${ASYNC_DEBUG:-0}
+ASYNC_DEBUG=${ASYNC_DEBUG:-0}
 
 # Wrapper for jobs executed by the async worker, gives output in parseable format with execution time
 _async_job() {
 	# Disable xtrace as it would mangle the output.
 	setopt localoptions noxtrace
 
-	# Store start time for job.
+	# Store start time as double precision (+E disables scientific notation)
 	float -F duration=$EPOCHREALTIME
 
 	# Run the command and capture both stdout (`eval`) and stderr (`cat`) in
@@ -204,7 +204,7 @@ _async_worker() {
 # 	$5 = resulting stderr from execution
 #
 async_process_results() {
-	setopt localoptions unset noshwordsplit noksharrays noposixidentifiers noposixstrings
+	setopt localoptions noshwordsplit
 
 	local worker=$1
 	local callback=$2
@@ -279,7 +279,7 @@ _async_zle_watcher() {
 # 	async_job <worker_name> <my_function> [<function_params>]
 #
 async_job() {
-	setopt localoptions noshwordsplit noksharrays noposixidentifiers noposixstrings
+	setopt localoptions noshwordsplit
 
 	local worker=$1; shift
 
@@ -289,15 +289,13 @@ async_job() {
 		cmd=(${(q)cmd})  # Quote special characters in multi argument commands.
 	fi
 
-	# Quote the cmd in case RC_EXPAND_PARAM is set.
-	zpty -w $worker "$cmd"$'\0'
+	zpty -w $worker $cmd$'\0'
 }
 
 # This function traps notification signals and calls all registered callbacks
 _async_notify_trap() {
 	setopt localoptions noshwordsplit
 
-	local k
 	for k in ${(k)ASYNC_CALLBACKS}; do
 		async_process_results $k ${ASYNC_CALLBACKS[$k]} trap
 	done
@@ -444,7 +442,7 @@ async_start_worker() {
 async_stop_worker() {
 	setopt localoptions noshwordsplit
 
-	local ret=0 worker k v
+	local ret=0
 	for worker in $@; do
 		# Find and unregister the zle handler for the worker
 		for k v in ${(@kv)ASYNC_PTYS}; do
@@ -472,14 +470,14 @@ async_stop_worker() {
 #
 async_init() {
 	(( ASYNC_INIT_DONE )) && return
-	typeset -g ASYNC_INIT_DONE=1
+	ASYNC_INIT_DONE=1
 
 	zmodload zsh/zpty
 	zmodload zsh/datetime
 
 	# Check if zsh/zpty returns a file descriptor or not,
 	# shell must also be interactive with zle enabled.
-	typeset -g ASYNC_ZPTY_RETURNS_FD=0
+	ASYNC_ZPTY_RETURNS_FD=0
 	[[ -o interactive ]] && [[ -o zle ]] && {
 		typeset -h REPLY
 		zpty _async_test :

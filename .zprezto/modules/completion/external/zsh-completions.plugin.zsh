@@ -1,1 +1,1 @@
-fpath+="${0:h}/src"
+fpath+="`dirname $0`/src"

@@ -38,7 +38,6 @@ zstyle ':prezto:module:syntax-highlighting' highlighters \
   'main' \
   'brackets' \
   'pattern' \
-  'line' \
   'cursor' \
   'root'
 ```

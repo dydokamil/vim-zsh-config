@@ -4,18 +4,15 @@
 # Authors:
 #   Sorin Ionescu <sorin.ionescu@gmail.com>
 #   Sebastian Wiesner <lunaryorn@googlemail.com>
-#   Patrick Bos <egpbos@gmail.com>
 #
 
 # Load manually installed pyenv into the shell session.
 if [[ -s "$HOME/.pyenv/bin/pyenv" ]]; then
   path=("$HOME/.pyenv/bin" $path)
-  export PYENV_ROOT=$(pyenv root)
   eval "$(pyenv init -)"
 
 # Load package manager installed pyenv into the shell session.
 elif (( $+commands[pyenv] )); then
-  export PYENV_ROOT=$(pyenv root)
   eval "$(pyenv init -)"
 
 # Prepend PEP 370 per user site packages directory, which defaults to
@@ -130,7 +127,7 @@ fi
 
 # Load PIP completion.
 if (( $#commands[(i)pip(|[23])] )); then
-  cache_file="${TMPDIR:-/tmp}/prezto-python-cache.$UID.zsh"
+  cache_file="${0:h}/cache.zsh"
 
   # Detect and use one available from among 'pip', 'pip2', 'pip3' variants
   pip_command="$commands[(i)pip(|[23])]"
@@ -143,19 +140,6 @@ if (( $#commands[(i)pip(|[23])] )); then
 
   source "$cache_file"
   unset cache_file pip_command
-fi
-
-# Load conda into the shell session, if requested
-zstyle -T ':prezto:module:python' conda-init
-if (( $? && $+commands[conda] )); then
-  if (( $(conda ..changeps1) )); then
-    echo "To make sure Conda doesn't change your prompt (should do that in the prompt module) run:\n  conda config --set changeps1 false"
-    # TODO:
-    # We could just run this ourselves. In an exit hook
-    # (add zsh-hook zshexit [(anonymous) function]) we could then set it back
-    # to the way it was before we changed it. However, I'm not sure if this is
-    # exception safe, so left it like this for now.
-  fi
 fi
 
 #

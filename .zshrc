@@ -1,52 +1,53 @@
-POWERLEVEL9K_MODE='awesome-patched'
-source ~/.fonts/*.sh
+# @author     Sebastian Tramp <mail@sebastian.tramp.name>
+# @license    http://opensource.org/licenses/gpl-license.php
 #
-# Executes commands at the start of an interactive session.
-#
-# Authors:
-#   Sorin Ionescu <sorin.ionescu@gmail.com>
+# the main RC file (will be linked to ~/.zshrc)
 #
 
-# Source Prezto.
-if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
-  source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
-fi
+# first include of the environment
+source $HOME/.config/zsh/environment.zsh
 
-# Disable dir/git icons
-POWERLEVEL9K_HOME_ICON=''
-POWERLEVEL9K_HOME_SUB_ICON=''
-POWERLEVEL9K_FOLDER_ICON=''
+typeset -ga sources
+sources+="$ZSH_CONFIG/environment.zsh"
+sources+="$ZSH_CONFIG/options.zsh"
+sources+="$ZSH_CONFIG/prompt.zsh"
+sources+="$ZSH_CONFIG/functions.zsh"
+sources+="$ZSH_CONFIG/aliases.zsh"
 
-DISABLE_AUTO_TITLE="true"
+# highlights the live command line
+# Cloned From: git://github.com/nicoulaj/zsh-syntax-highlighting.git
+sources+="$ZSH_CONFIG/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 
-POWERLEVEL9K_VCS_GIT_ICON=''
-POWERLEVEL9K_VCS_STAGED_ICON='\u00b1'
-POWERLEVEL9K_VCS_UNTRACKED_ICON='\u25CF'
-POWERLEVEL9K_VCS_UNSTAGED_ICON='\u00b1'
-POWERLEVEL9K_VCS_INCOMING_CHANGES_ICON='\u2193'
-POWERLEVEL9K_VCS_OUTGOING_CHANGES_ICON='\u2191'
+# provides the package name of a non existing executable
+# (sudo apt-get install command-not-found)
+sources+="/etc/zsh_command_not_found"
 
-POWERLEVEL9K_VCS_MODIFIED_BACKGROUND='yellow'
-POWERLEVEL9K_VCS_UNTRACKED_BACKGROUND='yellow'
-#POWERLEVEL9K_VCS_UNTRACKED_ICON='?'
+# Check for a system specific file
+systemFile=`uname -s | tr "[:upper:]" "[:lower:]"`
+sources+="$ZSH_CONFIG/$systemFile.zsh"
 
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(status os_icon context dir vcs)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(background_jobs virtualenv rbenv pyenv virtualenv anaconda rvm time)
+# Private aliases and adoptions
+sources+="$ZSH_CONFIG/private.zsh"
 
-POWERLEVEL9K_SHORTEN_STRATEGY="truncate_middle"
-POWERLEVEL9K_SHORTEN_DIR_LENGTH=4
+# completion config needs to be after system and private config
+sources+="$ZSH_CONFIG/completion.zsh"
 
-POWERLEVEL9K_TIME_FORMAT="%D{%H:%M \uE868  %d.%m.%y}"
+# provides git completion
+sources+="$ZSH_CONFIG/git.zsh"
 
-POWERLEVEL9K_STATUS_VERBOSE=false
-# POWERLEVEL9K_COLOR_SCHEME='dark'
-POWERLEVEL9K_DIR_HOME_FOREGROUND="white"
-POWERLEVEL9K_DIR_HOME_SUBFOLDER_FOREGROUND="white"
+# fasd integration and config
+sources+="$ZSH_CONFIG/fasd.zsh"
 
-POWERLEVEL9K_VCS_UNTRACKED_FOREGROUND='white'
-POWERLEVEL9K_VCS_CLEAN_FOREGROUND='white'
-POWERLEVEL9K_VCS_MODIFIED_FOREGROUND='white'
+# Private aliases and adoptions added at the very end (e.g. to start byuobu)
+sources+="$ZSH_CONFIG/private.final.zsh"
 
-export DEFAULT_USER="$USER"
+# try to include all sources
+foreach file (`echo $sources`)
+    if [[ -a $file ]]; then
+        source $file
+    fi
+end
 
-setopt globdots
+source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
+screenfetch
+export PATH=/opt/anaconda/bin:$PATH
