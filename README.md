@@ -3,3 +3,5 @@
 
 # Vim
 <img src='./img/vim.png' />
+
+Font: Source Code Pro Powerline Awesome Regular
