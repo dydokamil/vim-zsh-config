@@ -1,8 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =6
-let g:netrw_dirhist_1='/home/kamil/models/research/object_detection/ssd_mobilenet_v1_coco_11_06_2017'
-let g:netrw_dirhist_2='/home/kamil/models/research/object_detection/training'
-let g:netrw_dirhist_3='/home/kamil/models/research/object_detection'
-let g:netrw_dirhist_4='/home/kamil/Dokumenty/python_projects/django-projs/traverstymedia/posts/templates/posts'
-let g:netrw_dirhist_5='/home/kamil/Dokumenty/python_projects/django-projs/traverstymedia/posts/templates'
-let g:netrw_dirhist_6='/home/kamil/Dokumenty/python_projects/django-projs/traverstymedia/posts'

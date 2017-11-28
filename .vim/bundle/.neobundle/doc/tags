@@ -203,6 +203,7 @@
 <plug>(vimtex-labels-open)	vimtex.txt	/*<plug>(vimtex-labels-open)*
 <plug>(vimtex-labels-toggle)	vimtex.txt	/*<plug>(vimtex-labels-toggle)*
 <plug>(vimtex-reload)	vimtex.txt	/*<plug>(vimtex-reload)*
+<plug>(vimtex-reload-state)	vimtex.txt	/*<plug>(vimtex-reload-state)*
 <plug>(vimtex-reverse-search)	vimtex.txt	/*<plug>(vimtex-reverse-search)*
 <plug>(vimtex-status)	vimtex.txt	/*<plug>(vimtex-status)*
 <plug>(vimtex-status-all)	vimtex.txt	/*<plug>(vimtex-status-all)*
@@ -248,6 +249,7 @@ VimtexLabelsToggle	vimtex.txt	/*VimtexLabelsToggle*
 VimtexRSearch	vimtex.txt	/*VimtexRSearch*
 VimtexRefreshFolds	vimtex.txt	/*VimtexRefreshFolds*
 VimtexReload	vimtex.txt	/*VimtexReload*
+VimtexReloadState	vimtex.txt	/*VimtexReloadState*
 VimtexStatus	vimtex.txt	/*VimtexStatus*
 VimtexStatus!	vimtex.txt	/*VimtexStatus!*
 VimtexStop	vimtex.txt	/*VimtexStop*
@@ -312,6 +314,7 @@ g:neosnippet#disable_select_mode_mappings	neosnippet.txt	/*g:neosnippet#disable_
 g:neosnippet#enable_auto_clear_markers	neosnippet.txt	/*g:neosnippet#enable_auto_clear_markers*
 g:neosnippet#enable_completed_snippet	neosnippet.txt	/*g:neosnippet#enable_completed_snippet*
 g:neosnippet#enable_conceal_markers	neosnippet.txt	/*g:neosnippet#enable_conceal_markers*
+g:neosnippet#enable_optional_arguments	neosnippet.txt	/*g:neosnippet#enable_optional_arguments*
 g:neosnippet#enable_snipmate_compatibility	neosnippet.txt	/*g:neosnippet#enable_snipmate_compatibility*
 g:neosnippet#expand_word_boundary	neosnippet.txt	/*g:neosnippet#expand_word_boundary*
 g:neosnippet#scope_aliases	neosnippet.txt	/*g:neosnippet#scope_aliases*
@@ -368,7 +371,6 @@ g:vimtex_delim_list	vimtex.txt	/*g:vimtex_delim_list*
 g:vimtex_delim_stopline	vimtex.txt	/*g:vimtex_delim_stopline*
 g:vimtex_delim_toggle_mod_list	vimtex.txt	/*g:vimtex_delim_toggle_mod_list*
 g:vimtex_disable_recursive_main_file_detection	vimtex.txt	/*g:vimtex_disable_recursive_main_file_detection*
-g:vimtex_disable_version_warning	vimtex.txt	/*g:vimtex_disable_version_warning*
 g:vimtex_doc_handlers	vimtex.txt	/*g:vimtex_doc_handlers*
 g:vimtex_echo_ignore_wait	vimtex.txt	/*g:vimtex_echo_ignore_wait*
 g:vimtex_enabled	vimtex.txt	/*g:vimtex_enabled*
@@ -396,6 +398,7 @@ g:vimtex_imaps_list	vimtex.txt	/*g:vimtex_imaps_list*
 g:vimtex_indent_bib_enabled	vimtex.txt	/*g:vimtex_indent_bib_enabled*
 g:vimtex_indent_enabled	vimtex.txt	/*g:vimtex_indent_enabled*
 g:vimtex_indent_ignored_envs	vimtex.txt	/*g:vimtex_indent_ignored_envs*
+g:vimtex_indent_lists	vimtex.txt	/*g:vimtex_indent_lists*
 g:vimtex_indent_on_ampersands	vimtex.txt	/*g:vimtex_indent_on_ampersands*
 g:vimtex_index_hide_line_numbers	vimtex.txt	/*g:vimtex_index_hide_line_numbers*
 g:vimtex_index_resize	vimtex.txt	/*g:vimtex_index_resize*
@@ -412,10 +415,12 @@ g:vimtex_latexmk_continuous	vimtex.txt	/*g:vimtex_latexmk_continuous*
 g:vimtex_latexmk_enabled	vimtex.txt	/*g:vimtex_latexmk_enabled*
 g:vimtex_latexmk_options	vimtex.txt	/*g:vimtex_latexmk_options*
 g:vimtex_latexmk_progname	vimtex.txt	/*g:vimtex_latexmk_progname*
+g:vimtex_mappings_disable	vimtex.txt	/*g:vimtex_mappings_disable*
 g:vimtex_mappings_enabled	vimtex.txt	/*g:vimtex_mappings_enabled*
 g:vimtex_matchparen_enabled	vimtex.txt	/*g:vimtex_matchparen_enabled*
 g:vimtex_motion_enabled	vimtex.txt	/*g:vimtex_motion_enabled*
 g:vimtex_quickfix_autojump	vimtex.txt	/*g:vimtex_quickfix_autojump*
+g:vimtex_quickfix_blgparser	vimtex.txt	/*g:vimtex_quickfix_blgparser*
 g:vimtex_quickfix_enabled	vimtex.txt	/*g:vimtex_quickfix_enabled*
 g:vimtex_quickfix_ignore_all_warnings	vimtex.txt	/*g:vimtex_quickfix_ignore_all_warnings*
 g:vimtex_quickfix_ignored_warnings	vimtex.txt	/*g:vimtex_quickfix_ignored_warnings*
@@ -743,6 +748,7 @@ vimtex-faq-surround	vimtex.txt	/*vimtex-faq-surround*
 vimtex-faq-tags	vimtex.txt	/*vimtex-faq-tags*
 vimtex-faq-tags-bibtex	vimtex.txt	/*vimtex-faq-tags-bibtex*
 vimtex-faq-texmfhome	vimtex.txt	/*vimtex-faq-texmfhome*
+vimtex-faq-windows	vimtex.txt	/*vimtex-faq-windows*
 vimtex-features	vimtex.txt	/*vimtex-features*
 vimtex-folding	vimtex.txt	/*vimtex-folding*
 vimtex-imaps	vimtex.txt	/*vimtex-imaps*
@@ -782,6 +788,7 @@ vimtex-zx	vimtex.txt	/*vimtex-zx*
 vimtex.txt	vimtex.txt	/*vimtex.txt*
 vimtex_labels	vimtex.txt	/*vimtex_labels*
 vimtex_toc	vimtex.txt	/*vimtex_toc*
+vimtex_version_check	vimtex.txt	/*vimtex_version_check*
 vimtex_viewer_general	vimtex.txt	/*vimtex_viewer_general*
 vimtex_viewer_mupdf	vimtex.txt	/*vimtex_viewer_mupdf*
 vimtex_viewer_okular	vimtex.txt	/*vimtex_viewer_okular*
