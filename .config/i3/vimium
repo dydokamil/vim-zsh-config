@@ -1,0 +1,99 @@
+# Insert your preferred key mappings here.
+
+unmap j
+unmap k
+unmap l
+unmap h
+
+unmap gg
+map dd scrollToTop
+
+unmap G
+map D scrollToBottom
+
+unmap d
+map s scrollPageDown
+
+unmap u
+map l scrollPageUp
+
+unmap p
+map p reload
+
+unmap yy
+map jj copyCurrentUrl
+
+unmap p
+map ; openCopiedUrlInCurrentTab
+
+unmap P
+map : openCopiedUrlInNewTab
+
+unmap i
+map u enterInsertMode
+
+unmap gi
+map du focusInput
+
+unmap f
+map t LinkHints.activateMode
+
+unmap F
+map T LinkHints.activateModeToOpenInNewTab
+
+unmap gf
+map dt nextFrame
+
+umap gF
+map dT mainFrame
+
+# vomnibar
+unmap o
+map y Vomnibar.activate
+
+unmap O
+map Y Vomnibar.activateInNewTab
+
+unmap T
+map G Vomnibar.activateTabSelection
+
+# find
+unmap n
+map k performFind
+
+unmap N
+map E nextTab
+
+unmap J
+map N previousTab
+
+# nav hist
+unmap L
+map I goForward
+
+# manipulating tabs
+unmap t
+map g createTab
+
+unmap gT
+map dG previousTab
+
+unmap gt
+map dg nextTab
+
+unmap g0
+map d0 firstTab
+
+unmap g$
+map d$ lastTab
+
+unmap yt
+map jg duplicateTab
+
+unmap <a-p>
+map <a-;> togglePinTab
+
+map n scrollDown
+map h scrollLeft
+map e scrollUp
+map i scrollRight
